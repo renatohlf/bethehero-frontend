@@ -5,21 +5,25 @@ import heroesImg from '../../assets/heroes.png';
 import logo from '../../assets/logo.svg';
 import { Link, useHistory } from "react-router-dom";
 import api from "../../services/api";
-import { useState } from "react";
+import { Form, Field } from "react-final-form";
 
 const Login = () => {
-    const [id, setId] = useState();
+
    const history = useHistory();
     
-    const login = (e) => {
-        e.preventDefault();
-        api.post('login', { id }).then((res) => {
-            localStorage.setItem('ongId', id);
-            localStorage.setItem('ongName', res.data.name);
+    const login = (values) => {
+        
+        api.post('login', { ...values }).then(
+        (res) => {
+           
+            localStorage.setItem('ongId', res.data.ong._id);
+            localStorage.setItem('ongName', res.data.ong.name);
+            localStorage.setItem('token', res.data.token);
             history.push(`/profile`);
-        }).catch((err) => {
-            console.log(err);
-            alert('An error occured');
+        })
+        .catch((error) => {
+            console.log(error.response.data.error);
+            alert('An error occured: ' + error.response.data.error);
         });
         
     };
@@ -29,18 +33,35 @@ const Login = () => {
         <section className="login__section">
             <img src={logo} alt="Heroes" />
 
-            <form className={"login__form"} onSubmit={login}>
-                <h1 className={"login__form__header"}>Sign in now</h1>
+            <Form
+                onSubmit={login}
+                render={({ handleSubmit }) => (
+                    <form className={"login__form"} onSubmit={handleSubmit}>
+                        <h1 className={"login__form__header"}>Sign in now</h1>
 
-                <input placeholder="Your ID" onChange={(e) => setId(e.target.value)} type="text"/>
-                <button className={"button"} type="submit">Sign in</button>
+                        <Field
+                            name="email"
+                            component="input"
+                            placeholder="Username"
+                        />
 
-            
+                        <Field
+                            name="password"
+                            component="input"
+                            type="password"
+                            placeholder="Password"
+                        />
+
+                        <button className={"button"} type="submit">Sign in</button>
+   
+                    </form>)
+                    }
+                />
+
                 <Link className={"back-link"} to="/register">
-                    <FiLogIn size={16} color={"e02041"} />
-                    I don't have an account
-                </Link>
-            </form>
+                        <FiLogIn size={16} color={"e02041"} />
+                        I don't have an account
+                    </Link>
         </section>
 
         <img src={heroesImg} alt="Heroes" />

@@ -12,11 +12,11 @@ const Register = () => {
 
   const handleRegister = (formValues) => {
     
-    api.post('ongs', formValues).then((response) => {
-      alert(`Sucess! here is your access id: ${response.data.id}`);
+    api.post('register', formValues).then((response) => {
+      //TODO: Send confirmation email
+      alert(`Thank you for your registration! your username is: ${response.data.ong.email}`);
       history.push('/');
     }).catch((err) => {
-      console.log(err)
       alert('Operation not possible due an error. '); 
     });
   };
@@ -74,6 +74,13 @@ const Register = () => {
                   style={{ width: 80 }}
                 />
               </div>
+
+              <Field
+                name="password"
+                component="input"
+                type='password'
+                placeholder="Password"
+              />
 
               <button className={"button"} type="submit">
                 Sign up

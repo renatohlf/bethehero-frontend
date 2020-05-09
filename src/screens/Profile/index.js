@@ -10,16 +10,19 @@ const Profile = () => {
     const history = useHistory();
 
     const ongName = localStorage.getItem('ongName');
-    const ongId = localStorage.getItem('ongId');
+
+    const token = localStorage.getItem('token');
     
     const [incidents, setIncidents] = useState([]);
 
     const loadIncidents = useCallback(() => {
-        api.get('profile', { headers: { Authorization: ongId}}).then((res) => {
-            console.log(res.data);
-            setIncidents(res.data.results);
-        }).catch((err) => console.log(err));
-    }, [ongId]);
+        api.get('profile', { headers: { Authorization: token }}).then((res) => {
+           if(res && res.data) {
+               setIncidents(res.data.results);
+            }
+        }).catch((err) => console.log('err: ' + err.response.data.error));
+    }, [token]);
+    
 
     useEffect(() => {
         loadIncidents();
@@ -27,8 +30,7 @@ const Profile = () => {
 
 
     const handleDeleteIncident = (id) => {
-        api.delete(`incidents/${id}`, { headers: { Authorization: ongId}}).then((res) => {
-            console.log(res.data);
+        api.delete(`incidents/${id}`, { headers: { Authorization: token}}).then((res) => {
             loadIncidents();
         }).catch((err) => console.log(err));
     };
@@ -36,6 +38,7 @@ const Profile = () => {
     const handleLogout = () => {
         localStorage.removeItem('ongName');
         localStorage.removeItem('ongId');
+        localStorage.removeItem('token');
         history.push('/');
     };
 
@@ -55,7 +58,7 @@ const Profile = () => {
             <ul>
                 { incidents && incidents.map(incident => 
 
-                    <li key={incident.id}>
+                    <li key={incident._id}>
                         <strong>CASE:</strong>
                         <p>{incident.title}</p>
 
@@ -65,7 +68,7 @@ const Profile = () => {
                         <strong>VALUE:</strong>
                         <p>{Intl.NumberFormat('de', { style: 'currency', currency: 'EUR'}).format(incident.value)}</p>
 
-                        <button onClick={() => handleDeleteIncident(incident.id)} type="button">
+                        <button onClick={() => handleDeleteIncident(incident._id)} type="button">
                             <FiTrash2 size={20} color="#a8a8b3" />
                         </button>
                     </li>

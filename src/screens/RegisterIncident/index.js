@@ -8,16 +8,16 @@ import api from "../../services/api";
 
 const RegisterIncident = () => {
     const history = useHistory();
-    const ongId = localStorage.getItem('ongId');
+    const token = localStorage.getItem('token');
 
     const handleRegister = (formValues) => {
 
-        api.post('incidents', formValues, { headers: { Authorization: ongId }}).then((response) => {
+        api.post('incidents', formValues, { headers: { Authorization: token }}).then((response) => {
             alert(`Incident sucessfuly registered!`);
             history.push('/profile');
         }).catch((err) => {
-            console.log(err)
-            alert('Operation not possible due an error. '); 
+            console.log(err.response.data.error)
+            alert('Operation not possible due an error. '+ err.response.data.error); 
         });
     };
 
