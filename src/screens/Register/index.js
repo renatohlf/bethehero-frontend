@@ -1,5 +1,5 @@
 import React from "react";
-import "./register.css";
+import "./register.scss";
 import logo from "../../assets/logo.svg";
 import { Link, useHistory } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";

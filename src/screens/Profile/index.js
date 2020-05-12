@@ -1,10 +1,13 @@
-import React, { useEffect, useCallback} from 'react';
+import React, { useEffect,useState, useCallback} from 'react';
 import { Link, useHistory } from "react-router-dom";
 import logo from '../../assets/logo.svg';
-import { FiPower, FiTrash2 } from 'react-icons/fi';
-import "./profile.css";
+import { FiPower, FiTrash2, FiMenu, FiPlus } from 'react-icons/fi';
+import "./profile.scss";
 import api from "../../services/api";
-import { useState } from 'react';
+import DropdownMenu from '../../components/DropdownMenu/DropdownMenu';
+import NavBar from '../../components/NavBar/NavBar';
+import NavItem from '../../components/NavBar/NavItem/NavItem';
+import DropdownItem from '../../components/DropdownMenu/DropdownItem/DropdownItem';
 
 const Profile = () => {
     const history = useHistory();
@@ -36,6 +39,7 @@ const Profile = () => {
     };
 
     const handleLogout = () => {
+        console.log('ha')
         localStorage.removeItem('ongName');
         localStorage.removeItem('ongId');
         localStorage.removeItem('token');
@@ -44,28 +48,34 @@ const Profile = () => {
 
     return <div className="profile__container">
         <header className={"profile__header"}>
-            <img src={logo} alt="Be the Hero"/>
+            <img className="profile__logo" src={logo} alt="Be the Hero"/>
             <span>Welcome, {ongName ? ongName : 'anon'}</span>
-            
-            <Link className={"button"} to="/incidents/new">Register new case</Link>
-            <button type={"button"} onClick={handleLogout}>
-                <FiPower size={18} color={"#E02041"} />
-            </button>
+
+            <NavBar>
+                {/* <NavItem to={'/incidents/new'} icon={<FiUser size={18} color={"#e02041"} />}></NavItem>  */}
+                <NavItem icon={<FiMenu size={18} color={'#e02041'} />} isDropdownMenu={true}>
+                    <DropdownMenu>
+                        <DropdownItem leftIcon={<FiPlus size={18} color={"#FFF"} />} to={'/incidents/new'}>New case</DropdownItem>
+                        <DropdownItem leftIcon={<FiPower size={18} color={"#FFF"} />} onClick={handleLogout}>Log out</DropdownItem>
+                    </DropdownMenu>
+                </NavItem>
+            </NavBar>
         </header>
 
         <div className="profile__content">
             <h1>Registered cases</h1>        
-            <ul>
+            { incidents.length === 0 && <div className="profile__empty text-muted"> You didn't register any new case yet. Click <Link to={'/incidents/new'}>here</Link>  to register </div>}
+            <ul>    
                 { incidents && incidents.map(incident => 
 
                     <li key={incident._id}>
-                        <strong>CASE:</strong>
+                        <strong>Case</strong>
                         <p>{incident.title}</p>
 
-                        <strong>DESCRIPTION:</strong>
+                        <strong>Description</strong>
                         <p>{incident.description}</p>
 
-                        <strong>VALUE:</strong>
+                        <strong>Value</strong>
                         <p>{Intl.NumberFormat('de', { style: 'currency', currency: 'EUR'}).format(incident.value)}</p>
 
                         <button onClick={() => handleDeleteIncident(incident._id)} type="button">

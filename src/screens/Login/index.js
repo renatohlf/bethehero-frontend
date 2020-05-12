@@ -1,6 +1,6 @@
 import React from "react";
 import { FiLogIn } from "react-icons/fi";
-import './login.css';
+import './login.scss';
 import heroesImg from '../../assets/heroes.png';
 import logo from '../../assets/logo.svg';
 import { Link, useHistory } from "react-router-dom";
@@ -64,7 +64,7 @@ const Login = () => {
                     </Link>
         </section>
 
-        <img src={heroesImg} alt="Heroes" />
+        <img className={"login__logo"} src={heroesImg} alt="Heroes" />
     </div>
   );
 };

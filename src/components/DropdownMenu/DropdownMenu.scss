@@ -1,0 +1,10 @@
+.dropdown {
+    position: absolute;
+    top: 95px;
+    background-color: var(--brand-color);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    overflow: hidden;   
+    width: 200px;
+}
+

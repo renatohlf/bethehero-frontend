@@ -13,6 +13,10 @@
     width: 100%;
     max-width: 350px;
     margin-right: 32px;
+    @media (max-width: 768px) { 
+        margin: 1rem;
+        text-align: center;
+    }
 }
 
 .login__form {
@@ -22,4 +26,10 @@
 .login__form__header {
     font-size: 32px;
     margin-bottom: 32px;
+}
+
+.login__logo {
+    @media (max-width: 768px) {
+        display: none;
+    }
 }
