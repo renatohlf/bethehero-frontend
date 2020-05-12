@@ -31,8 +31,8 @@ const Register = () => {
             Sign up, login in the platform and help other people to find other
             cases of your ONG.
           </p>
-          <Link className={"back-link"} to="/">
-            <FiArrowLeft size={16} color={"e02041"} />I don't have an account
+          <Link className={"back-link register__back-link"} to="/">
+            <FiArrowLeft size={16} color={"e02041"} /> I already have an account
           </Link>
         </section>
 

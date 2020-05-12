@@ -15,16 +15,27 @@
     align-content: center;
 
     width: 100%;
-    padding: 96px;
+    padding: 6rem;
     background: #f0f0f5;
     box-shadow: 0 0 100px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+
+    @media (max-width: 768px) { 
+        margin-top: 2rem;
+        padding: 1rem;
+        flex-direction: column;
+        text-align: center;
+    }
     
 }
 
 .register__section {
     width: 100%;
-    max-width: 380px;   
+    max-width: 380px;
+    @media (max-width: 768px) { 
+        margin-bottom: 2rem;   
+        margin-top: 2rem;
+    }
 }
 
 .register__section__header {
@@ -52,4 +63,10 @@
 }
 .register__form__group input + input {
     margin-left: 8px;
+}
+
+.register__back-link {
+    @media (max-width: 768px) { 
+        justify-content: center;
+    }
 }

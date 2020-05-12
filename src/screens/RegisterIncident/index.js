@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import logo from "../../assets/logo.svg";
 import { FiArrowLeft } from "react-icons/fi";
-import "./registerIncident.css";
+import "./registerIncident.scss";
 import { Field, Form } from "react-final-form";
 import api from "../../services/api";
 
@@ -32,9 +32,9 @@ const RegisterIncident = () => {
             <p className={"register-incident__section__text"}>
                 Describe the case detailed to find a hero to solve it.
             </p>
-            <Link className={"back-link"} to="/profile">
+            <Link className={"back-link register-incident__back-link"} to="/profile">
                 <FiArrowLeft size={16} color={"e02041"} />
-                Back to home
+                Back to profile
             </Link>
             </section>
             <Form
