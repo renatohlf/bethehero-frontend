@@ -45,6 +45,7 @@ const Register = () => {
                 name="name"
                 component="input"
                 placeholder="ONG Name"
+                required={true}
               />
               
               <Field
@@ -52,6 +53,7 @@ const Register = () => {
                 component="input"
                 type='email'
                 placeholder="Email"
+                required={true}
               />
 
               <Field
@@ -66,12 +68,14 @@ const Register = () => {
                   name="city"
                   component="input"
                   placeholder="city"
+                  required={true}
                 />
                 <Field
                   name="uf"
                   component="input"
                   placeholder="UF"
                   style={{ width: 80 }}
+                  required={true}
                 />
               </div>
 
@@ -80,6 +84,7 @@ const Register = () => {
                 component="input"
                 type='password'
                 placeholder="Password"
+                required={true}
               />
 
               <button className={"button"} type="submit">

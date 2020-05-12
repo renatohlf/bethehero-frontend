@@ -53,7 +53,7 @@ const Profile = () => {
 
             <NavBar>
                 {/* <NavItem to={'/incidents/new'} icon={<FiUser size={18} color={"#e02041"} />}></NavItem>  */}
-                <NavItem icon={<FiMenu size={18} color={'#e02041'} />} isDropdownMenu={true}>
+                <NavItem icon={<FiMenu size={25} color={'#e02041'} />} isDropdownMenu={true}>
                     <DropdownMenu>
                         <DropdownItem leftIcon={<FiPlus size={18} color={"#FFF"} />} to={'/incidents/new'}>New case</DropdownItem>
                         <DropdownItem leftIcon={<FiPower size={18} color={"#FFF"} />} onClick={handleLogout}>Log out</DropdownItem>

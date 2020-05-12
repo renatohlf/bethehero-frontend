@@ -41,13 +41,20 @@ const RegisterIncident = () => {
             onSubmit={handleRegister}
             render={({ handleSubmit }) => (
                 <form className="register-incident__form" onSubmit={handleSubmit}>
-                <Field name="title" component="input" placeholder="Title" />
+                <Field 
+                    name="title" 
+                    component="input" 
+                    placeholder="Title"
+                    required={true}
+                    validateOnBlur={true}
+                />
 
                 <Field
                     name="description"
                     component="textarea"
                     placeholder="Description"
                     style={{ height: 180 }}
+                    required={true}
                 />
 
                 <Field
@@ -55,6 +62,7 @@ const RegisterIncident = () => {
                     component="input"
                     type="number"
                     placeholder="Value"
+                    required={true}
                 />
 
                 <div className="register-incident__form__group">
