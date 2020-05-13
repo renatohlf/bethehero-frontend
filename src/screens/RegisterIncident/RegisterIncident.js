@@ -6,6 +6,7 @@ import "./RegisterIncident.scss";
 import { Field, Form } from "react-final-form";
 import api from "../../services/api";
 import LoadingSpinner from '../../components/LoadingSpinner';
+import { toast } from 'react-toastify';
 
 const RegisterIncident = () => {
     const [loading, setLoading] = useState(false);
@@ -16,12 +17,17 @@ const RegisterIncident = () => {
     const handleRegister = (formValues) => {
         setLoading(true);
         api.post('incidents', formValues, { headers: { Authorization: token }}).then((response) => {
-            alert(`Incident sucessfuly registered!`);
+            toast.success(`Incident successfuly registered!`, {
+                position: toast.POSITION.BOTTOM_CENTER
+              }, 2000);
             history.push('/profile');
             setLoading(false);
         }).catch((err) => {
             setLoading(false);
-            alert('Operation not possible due an error. '+ err.response.data.error); 
+            toast.error("Ops: " + err.response.data.error, {
+                position: toast.POSITION.BOTTOM_CENTER
+            }, 5000);
+           
         });
     };
 

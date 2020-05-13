@@ -8,6 +8,7 @@ import api from "../../services/api";
 import { Form, Field } from "react-final-form";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { useState } from "react";
+import { toast } from 'react-toastify';
 
 const Login = () => {
 
@@ -19,6 +20,9 @@ const Login = () => {
         api.post('login', { ...values }).then(
         (res) => {
             setLoading(false);
+            toast.success("Login Success", {
+                position: toast.POSITION.BOTTOM_CENTER
+            }, 2000);
             localStorage.setItem('ongId', res.data.ong._id);
             localStorage.setItem('ongName', res.data.ong.name);
             localStorage.setItem('token', res.data.token);
@@ -26,7 +30,9 @@ const Login = () => {
         })
         .catch((error) => {
             setLoading(false);
-            alert('An error occured: ' + error.response.data.error);
+            toast.error("Ops: " + error.response.data.error, {
+                position: toast.POSITION.BOTTOM_CENTER
+            }, 5000);
         });
         
     };

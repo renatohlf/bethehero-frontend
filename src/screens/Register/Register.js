@@ -6,6 +6,7 @@ import { FiArrowLeft } from "react-icons/fi";
 import { Form, Field } from "react-final-form";
 import api from "../../services/api";
 import LoadingSpinner from '../../components/LoadingSpinner';
+import { toast } from 'react-toastify';
 
 const Register = () => {
 
@@ -15,13 +16,19 @@ const Register = () => {
   const handleRegister = (formValues) => {
     setLoading(true);
     api.post('register', formValues).then((response) => {
-      //TODO: Send confirmation email
-      alert(`Thank you for your registration! your username is: ${response.data.ong.email}`);
-      history.push('/');
       setLoading(false);
+      //TODO: Send confirmation email
+      toast.success(`Thank you for your registration! Your username is: ${response.data.ong.email}`, {
+        position: toast.POSITION.BOTTOM_CENTER
+      }, 2000);
+      history.push('/');
+      
     }).catch((err) => {
       setLoading(false);
-      alert('Operation not possible due an error. '); 
+      toast.error("Ops: " + err.response.data.error, {
+        position: toast.POSITION.BOTTOM_CENTER
+      }, 5000);
+      
     });
   };
 

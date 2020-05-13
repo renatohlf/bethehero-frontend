@@ -9,6 +9,7 @@ import NavBar from '../../components/NavBar/NavBar';
 import NavItem from '../../components/NavBar/NavItem/NavItem';
 import DropdownItem from '../../components/DropdownMenu/DropdownItem/DropdownItem';
 import LoadingSpinner from '../../components/LoadingSpinner';
+import { toast } from 'react-toastify';
 
 const Profile = () => {
     
@@ -30,9 +31,10 @@ const Profile = () => {
             setLoading(false);
         }).catch((err) => {
             setLoading(false);
-            console.log('err: ' + err.response.data.error)
-            }
-         );
+            toast.error("Ops: " + err.response.data.error, {
+                position: toast.POSITION.BOTTOM_CENTER
+            }, 5000);
+        });
     }, [token]);
     
 
@@ -44,7 +46,14 @@ const Profile = () => {
     const handleDeleteIncident = (id) => {
         api.delete(`incidents/${id}`, { headers: { Authorization: token}}).then((res) => {
             loadIncidents();
-        }).catch((err) => console.log(err));
+            toast.success("Successfuly removed", {
+                position: toast.POSITION.BOTTOM_CENTER
+            }, 2000);
+        }).catch((err) => {
+            toast.error("Ops: " + err.response.data.error, {
+                position: toast.POSITION.BOTTOM_CENTER
+            }, 5000);
+        });
     };
 
     const handleLogout = () => {
