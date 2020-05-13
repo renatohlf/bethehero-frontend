@@ -40,6 +40,7 @@ const Login = () => {
     return (
         <div className="login__container">
             { loading && <LoadingSpinner /> }
+            <img className={"login__logo"} src={heroesImg} alt="Heroes" />
             <section className="login__section">
                 <img src={logo} alt="Heroes" />
 
@@ -50,12 +51,14 @@ const Login = () => {
                             <h1 className={"login__form__header"}>Sign in now</h1>
 
                             <Field
+                                className="login__input"
                                 name="email"
                                 component="input"
                                 placeholder="Username"
                             />
 
                             <Field
+                                className="login__input"
                                 name="password"
                                 component="input"
                                 type="password"
@@ -74,7 +77,7 @@ const Login = () => {
                         </Link>
             </section>
 
-            <img className={"login__logo"} src={heroesImg} alt="Heroes" />
+           
         </div>
     );
 };

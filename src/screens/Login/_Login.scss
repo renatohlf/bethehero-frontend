@@ -12,7 +12,6 @@
 .login__section {
     width: 100%;
     max-width: 350px;
-    margin-right: 32px;
     @media (max-width: 768px) { 
         margin: 1rem;
         text-align: center;
@@ -32,4 +31,8 @@
     @media (max-width: 768px) {
         display: none;
     }
+}
+
+.login__input {
+    margin-bottom: 1rem;
 }
