@@ -3,9 +3,13 @@ import "./DropdownMenu.scss";
 
 const DropdownMenu = (props) => {
    
-    return (<ul className="dropdown">
+    return (
+        <>
+            <div className="dropdown-arrow" />
+            <ul className="dropdown">    
                 {props.children}
-    </ul>);
+            </ul>
+    </>);
 }
 
 export default DropdownMenu

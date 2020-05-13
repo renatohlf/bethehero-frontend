@@ -1,10 +1,23 @@
 .dropdown {
     position: absolute;
-    top: 95px;
+    top: 6.32rem;
+    transform: translateX(-45%);
     background-color: var(--brand-color);
-    border: var(--border);
-    border-radius: var(--border-radius);
-    overflow: hidden;   
+    border-radius: var(--border-radius) 0 var(--border-radius) var(--border-radius);
     width: 200px;
+}
+.dropdown::after {
+    content: '';
+	position: absolute;
+	top: 0;
+	left: 95%;
+	width: 0;
+	height: 0;
+	border: 20px solid transparent;
+	border-bottom-color: var(--brand-color);
+	border-top: 0;
+	border-right: 0;
+	margin-left: -10px;
+	margin-top: -20px;
 }
 
