@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import logo from "../../assets/logo.svg";
 import { FiArrowLeft } from "react-icons/fi";
-import "./RegisterIncident.scss";
 import { Field, Form } from "react-final-form";
 import api from "../../services/api";
 import LoadingSpinner from '../../components/LoadingSpinner';

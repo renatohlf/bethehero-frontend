@@ -2,7 +2,6 @@ import React, { useEffect,useState, useCallback} from 'react';
 import { Link, useHistory } from "react-router-dom";
 import logo from '../../assets/logo.svg';
 import { FiPower, FiTrash2, FiMenu, FiPlus } from 'react-icons/fi';
-import "./Profile.scss";
 import api from "../../services/api";
 import DropdownMenu from '../../components/DropdownMenu/DropdownMenu';
 import NavBar from '../../components/NavBar/NavBar';

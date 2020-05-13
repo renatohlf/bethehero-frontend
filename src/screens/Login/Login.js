@@ -1,6 +1,5 @@
 import React from "react";
 import { FiLogIn } from "react-icons/fi";
-import './Login.scss';
 import heroesImg from '../../assets/heroes.png';
 import logo from '../../assets/logo.svg';
 import { Link, useHistory } from "react-router-dom";
