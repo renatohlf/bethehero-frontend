@@ -20,7 +20,7 @@ const Login = () => {
         (res) => {
             setLoading(false);
             toast.success("Login Success", {
-                position: toast.POSITION.BOTTOM_CENTER
+                position: toast.POSITION.BOTTOM_RIGHT
             }, 2000);
             localStorage.setItem('ongId', res.data.ong._id);
             localStorage.setItem('ongName', res.data.ong.name);
@@ -30,7 +30,7 @@ const Login = () => {
         .catch((error) => {
             setLoading(false);
             toast.error("Ops: " + error.response.data.error, {
-                position: toast.POSITION.BOTTOM_CENTER
+                position: toast.POSITION.BOTTOM_RIGHT
             }, 5000);
         });
         

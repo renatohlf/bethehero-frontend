@@ -17,14 +17,14 @@ const RegisterIncident = () => {
         setLoading(true);
         api.post('incidents', formValues, { headers: { Authorization: token }}).then((response) => {
             toast.success(`Incident successfuly registered!`, {
-                position: toast.POSITION.BOTTOM_CENTER
+                position: toast.POSITION.BOTTOM_RIGHT
               }, 2000);
             history.push('/profile');
             setLoading(false);
         }).catch((err) => {
             setLoading(false);
             toast.error("Ops: " + err.response.data.error, {
-                position: toast.POSITION.BOTTOM_CENTER
+                position: toast.POSITION.BOTTOM_RIGHT
             }, 5000);
            
         });

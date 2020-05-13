@@ -18,14 +18,14 @@ const Register = () => {
       setLoading(false);
       //TODO: Send confirmation email
       toast.success(`Thank you for your registration! Your username is: ${response.data.ong.email}`, {
-        position: toast.POSITION.BOTTOM_CENTER
+        position: toast.POSITION.BOTTOM_RIGHT
       }, 2000);
       history.push('/');
       
     }).catch((err) => {
       setLoading(false);
       toast.error("Ops: " + err.response.data.error, {
-        position: toast.POSITION.BOTTOM_CENTER
+        position: toast.POSITION.BOTTOM_RIGHT
       }, 5000);
       
     });

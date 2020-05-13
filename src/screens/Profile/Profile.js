@@ -31,7 +31,7 @@ const Profile = () => {
         }).catch((err) => {
             setLoading(false);
             toast.error("Ops: " + err.response.data.error, {
-                position: toast.POSITION.BOTTOM_CENTER
+                position: toast.POSITION.BOTTOM_RIGHT
             }, 5000);
         });
     }, [token]);
@@ -46,11 +46,11 @@ const Profile = () => {
         api.delete(`incidents/${id}`, { headers: { Authorization: token}}).then((res) => {
             loadIncidents();
             toast.success("Successfuly removed", {
-                position: toast.POSITION.BOTTOM_CENTER
+                position: toast.POSITION.BOTTOM_RIGHT
             }, 2000);
         }).catch((err) => {
             toast.error("Ops: " + err.response.data.error, {
-                position: toast.POSITION.BOTTOM_CENTER
+                position: toast.POSITION.BOTTOM_RIGHT
             }, 5000);
         });
     };
