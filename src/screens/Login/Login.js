@@ -29,7 +29,7 @@ const Login = () => {
         })
         .catch((error) => {
             setLoading(false);
-            toast.error("Ops: " + error.response.data.error, {
+            toast.error("Ops... " + error.response.data.error, {
                 position: toast.POSITION.BOTTOM_RIGHT
             }, 5000);
         });
@@ -48,12 +48,13 @@ const Login = () => {
                     onSubmit={login}
                     render={({ handleSubmit }) => (
                         <form className={"login__form"} onSubmit={handleSubmit}>
-                            <h1 className={"login__form__header"}>Sign in now</h1>
+                            <div className={"title"}>Sign in now</div>
 
                             <Field
                                 className="login__input"
                                 name="email"
                                 component="input"
+                                required={true}
                                 placeholder="Username"
                             />
 
@@ -62,6 +63,7 @@ const Login = () => {
                                 name="password"
                                 component="input"
                                 type="password"
+                                required={true}
                                 placeholder="Password"
                             />
 

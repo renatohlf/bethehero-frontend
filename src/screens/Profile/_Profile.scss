@@ -4,7 +4,7 @@
     padding: 0 2rem;
     margin: 2rem auto;
     @media (max-width: 768px) {
-        padding: 0 0.5rem;
+        padding: 0 1rem;
         margin: 1rem auto;
     }
 }
@@ -13,11 +13,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-.profile__header span {
-    font-size: 20px;
-    margin-left: 24px;
 }
 
 .profile__header img { 
@@ -60,7 +55,7 @@
 
 .profile__content ul li {
     background: #FFF;
-    padding: 24px;
+    padding: 1rem;
     border-radius: 8px;
     position: relative;
     @media (max-width: 768px) {  
@@ -70,8 +65,8 @@
 
 .profile__content ul li button {
     position: absolute;
-    right: 24px;
-    top: 24px;
+    right: 1rem;
+    top: 1rem;
     @media (min-width: 768px) {  
         border: 0;
     }
@@ -92,7 +87,7 @@
 }
 
 .profile__content ul li p {
-    color: #737380;
+    color: #6d6c6c;
     line-height: 21px;
     font-size: 16px;
 }

@@ -21,7 +21,10 @@
 }
 
 body {
-    font: 400 14px Roboto, sans-serif;
+    font: 400 16px Roboto, sans-serif;
+    @media (max-width: 768px) { 
+        font: 400 14px Roboto, sans-serif;
+    }
     background: var(--bg);
     -webkit-font-smoothing: antialiased;
 }
@@ -41,6 +44,15 @@ form input, textarea {
     border-radius: var(--border-radius);
     border: var(--border);
     padding: 0 24px;
+}
+
+.title {
+    font: bold 24px Roboto, sans-serif;
+    margin: 4rem 0 2rem;
+    @media (max-width: 768px) { 
+        font: bold 18px Roboto, sans-serif;
+        margin: 2rem 0 1rem;
+    }
 }
 
 .button {
@@ -68,12 +80,15 @@ form input, textarea {
 .back-link {
     display: flex;
     align-items: center;
-    margin-top: 40px;
+    
     color: #41414B;
-    font-size: 18px;
     text-decoration: none;
     font-weight: 500;
     transition: opacity .2s;
+    margin-top: 4rem;
+    @media (max-width: 768px) {  
+        margin-top: 2rem;
+    }
 }
 
 .back-link:hover {

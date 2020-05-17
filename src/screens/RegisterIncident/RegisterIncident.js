@@ -23,7 +23,7 @@ const RegisterIncident = () => {
             setLoading(false);
         }).catch((err) => {
             setLoading(false);
-            toast.error("Ops: " + err.response.data.error, {
+            toast.error("Ops... " + err.response.data.error, {
                 position: toast.POSITION.BOTTOM_RIGHT
             }, 5000);
            
@@ -36,9 +36,9 @@ const RegisterIncident = () => {
             <div className="register-incident__content">
                 <section className="register-incident__section">
                 <img src={logo} alt="Be the Hero" />
-                <h1 className={"register-incident__section__header"}>
+                <div className={"title"}>
                     Register new case
-                </h1>
+                </div>
                 <p className={"register-incident__section__text"}>
                     Describe the case detailed to find a hero to solve it.
                 </p>

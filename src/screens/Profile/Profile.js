@@ -30,7 +30,7 @@ const Profile = () => {
             setLoading(false);
         }).catch((err) => {
             setLoading(false);
-            toast.error("Ops: " + err.response.data.error, {
+            toast.error("Ops... " + err.response.data.error, {
                 position: toast.POSITION.BOTTOM_RIGHT
             }, 5000);
         });
@@ -49,7 +49,7 @@ const Profile = () => {
                 position: toast.POSITION.BOTTOM_RIGHT
             }, 2000);
         }).catch((err) => {
-            toast.error("Ops: " + err.response.data.error, {
+            toast.error("Ops... " + err.response.data.error, {
                 position: toast.POSITION.BOTTOM_RIGHT
             }, 5000);
         });
@@ -66,7 +66,7 @@ const Profile = () => {
          { loading && <LoadingSpinner /> }
         <header className={"profile__header"}>
             <img className="profile__logo" src={logo} alt="Be the Hero"/>
-            <span>Welcome, {ongName ? ongName : 'anon'}</span>
+            <span className="profile__title-header">Welcome, {ongName ? ongName : 'anon'}</span>
 
             <NavBar>
                 {/* <NavItem to={'/incidents/new'} icon={<FiUser size={18} color={"#e02041"} />}></NavItem>  */}
@@ -80,7 +80,7 @@ const Profile = () => {
         </header>
 
         <div className="profile__content">
-            <h1>Registered cases</h1>        
+            <div className="title">Registered cases</div>        
             { incidents.length === 0 && <div className="profile__empty text-muted"> You didn't register any new case yet. Click <Link to={'/incidents/new'}>here</Link>  to register </div>}
             <ul>    
                 { incidents && incidents.map(incident => 

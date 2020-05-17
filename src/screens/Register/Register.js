@@ -24,7 +24,7 @@ const Register = () => {
       
     }).catch((err) => {
       setLoading(false);
-      toast.error("Ops: " + err.response.data.error, {
+      toast.error("Ops... " + err.response.data.error, {
         position: toast.POSITION.BOTTOM_RIGHT
       }, 5000);
       
@@ -37,7 +37,7 @@ const Register = () => {
       <div className="register__content">
         <section className="register__section">
           <img src={logo} alt="Be the Hero" />
-          <h1 className={"register__section__header"}>Registration</h1>
+          <div className={"title"}>Registration</div>
           <p className={"register__section__text"}>
             Sign up, login in the platform and help other people to find other
             cases of your ONG.
