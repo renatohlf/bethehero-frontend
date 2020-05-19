@@ -30,7 +30,7 @@ const Profile = () => {
             setLoading(false);
         }).catch((err) => {
             setLoading(false);
-            toast.error("Ops... " + err.response.data.error, {
+            toast.error("Error: " + err.response.data.error, {
                 position: toast.POSITION.BOTTOM_RIGHT
             }, 5000);
         });
@@ -49,7 +49,7 @@ const Profile = () => {
                 position: toast.POSITION.BOTTOM_RIGHT
             }, 2000);
         }).catch((err) => {
-            toast.error("Ops... " + err.response.data.error, {
+            toast.error("Error: " + err.response.data.error, {
                 position: toast.POSITION.BOTTOM_RIGHT
             }, 5000);
         });

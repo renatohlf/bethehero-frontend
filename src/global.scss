@@ -3,6 +3,8 @@
 @import './screens/Profile/Profile';
 @import './screens/Register/Register';
 @import './screens/RegisterIncident/RegisterIncident';
+@import './screens/Auth/LostPassword/LostPassword';
+@import './screens/Auth/ResetPassword/ResetPassword';
 
 :root {
     --bg: #F0F0F5;
@@ -53,6 +55,10 @@ form input, textarea {
         font: bold 18px Roboto, sans-serif;
         margin: 2rem 0 1rem;
     }
+}
+
+.text-muted {
+    color: #6d6c6c;
 }
 
 .button {

@@ -23,7 +23,7 @@ const RegisterIncident = () => {
             setLoading(false);
         }).catch((err) => {
             setLoading(false);
-            toast.error("Ops... " + err.response.data.error, {
+            toast.error("Error: " + err.response.data.error, {
                 position: toast.POSITION.BOTTOM_RIGHT
             }, 5000);
            

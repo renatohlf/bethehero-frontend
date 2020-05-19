@@ -1,12 +1,11 @@
-import React from "react";
-import { FiLogIn } from "react-icons/fi";
+import React, { useState }  from "react";
+import { FiLogIn, FiLock } from "react-icons/fi";
 import heroesImg from '../../assets/heroes.png';
 import logo from '../../assets/logo.svg';
 import { Link, useHistory } from "react-router-dom";
 import api from "../../services/api";
 import { Form, Field } from "react-final-form";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import { useState } from "react";
 import { toast } from 'react-toastify';
 
 const Login = () => {
@@ -55,6 +54,7 @@ const Login = () => {
                                 name="email"
                                 component="input"
                                 required={true}
+                                type="email"
                                 placeholder="Username"
                             />
 
@@ -73,11 +73,19 @@ const Login = () => {
                         }
                     />
 
-                    <Link className={"back-link"} to="/register">
-                            <FiLogIn size={16} color={"e02041"} />
-                            I don't have an account
-                        </Link>
-            </section>
+
+            <div className={'login__links'}>
+                <Link className={"back-link"} to="/register">
+                        <FiLogIn size={16} color={"e02041"} />
+                        I don't have an account
+                </Link>
+                <Link className={"back-link"} to={`/lost_password`}>
+                        <FiLock size={16} color={"e02041"} />
+                        I lost my password
+                </Link>
+            
+            </div>
+           </section>
 
            
         </div>
