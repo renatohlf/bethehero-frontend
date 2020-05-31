@@ -52,7 +52,7 @@ const Register = () => {
             <form className="register__form" onSubmit={handleSubmit}>
 
               <Field
-                name="name"
+                name="ongName"
                 component="input"
                 placeholder="ONG Name"
                 required={true}

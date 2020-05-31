@@ -21,7 +21,6 @@ const Login = () => {
             toast.success("Login Success", {
                 position: toast.POSITION.BOTTOM_RIGHT
             }, 2000);
-            localStorage.setItem('ongId', res.data.ong._id);
             localStorage.setItem('ongName', res.data.ong.name);
             localStorage.setItem('token', res.data.token);
             history.push(`/profile`);
