@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 @import './screens/Login/Login';
 @import './screens/Profile/Profile';
+@import './screens/EditProfile/EditProfile';
 @import './screens/Register/Register';
 @import './screens/RegisterIncident/RegisterIncident';
 @import './screens/Auth/LostPassword/LostPassword';
 @import './screens/Auth/ResetPassword/ResetPassword';
+
 
 :root {
     --bg: #F0F0F5;

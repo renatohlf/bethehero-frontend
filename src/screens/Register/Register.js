@@ -77,7 +77,7 @@ const Register = () => {
                 <Field
                   name="city"
                   component="input"
-                  placeholder="city"
+                  placeholder="City"
                   required={true}
                 />
                 <Field
