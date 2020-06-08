@@ -1,7 +1,7 @@
 import React, { useEffect,useState, useCallback} from 'react';
 import { Link, useHistory } from "react-router-dom";
 import logo from '../../assets/logo.svg';
-import { FiPower, FiTrash2, FiMenu, FiPlus } from 'react-icons/fi';
+import { FiPower, FiTrash2, FiMenu, FiPlus, FiPenTool } from 'react-icons/fi';
 import api from "../../services/api";
 import DropdownMenu from '../../components/DropdownMenu/DropdownMenu';
 import NavBar from '../../components/NavBar/NavBar';
@@ -14,7 +14,7 @@ const Profile = () => {
     
     const history = useHistory();
 
-    const ongName = localStorage.getItem('ongName');
+    const [ ong, setOng ] = useState({});
 
     const token = localStorage.getItem('token');
     
@@ -34,6 +34,19 @@ const Profile = () => {
                 position: toast.POSITION.BOTTOM_RIGHT
             }, 5000);
         });
+    }, [token]);
+
+    useEffect(() => {
+        setLoading(true);
+        api.get('/ong', { headers: { Authorization: token }}).then((res) => {
+            setOng(res.data);
+            setLoading(false);
+        }).catch((err) => {
+            setLoading(false);
+            toast.error("Error: " + err.response.data.error, {
+                position: toast.POSITION.BOTTOM_RIGHT
+            }, 3000);
+        })
     }, [token]);
     
 
@@ -56,8 +69,6 @@ const Profile = () => {
     };
 
     const handleLogout = () => {
-        localStorage.removeItem('ongName');
-        localStorage.removeItem('ongId');
         localStorage.removeItem('token');
         history.push('/');
     };
@@ -66,12 +77,13 @@ const Profile = () => {
          { loading && <LoadingSpinner /> }
         <header className={"profile__header"}>
             <img className="profile__logo" src={logo} alt="Be the Hero"/>
-            <span className="profile__title-header">Welcome, {ongName ? ongName : 'anon'}</span>
+            <span className="profile__title-header">Welcome, {ong.name ? ong.name : 'anon'}</span>
 
             <NavBar>
                 {/* <NavItem to={'/incidents/new'} icon={<FiUser size={18} color={"#e02041"} />}></NavItem>  */}
                 <NavItem icon={<FiMenu size={25} color={'#e02041'} />} isDropdownMenu={true}>
                     <DropdownMenu>
+                        <DropdownItem leftIcon={<FiPenTool size={18} color={"#FFF"} />} to={'/profile/edit'}>Edit profile</DropdownItem>
                         <DropdownItem leftIcon={<FiPlus size={18} color={"#FFF"} />} to={'/incidents/new'}>New case</DropdownItem>
                         <DropdownItem leftIcon={<FiPower size={18} color={"#FFF"} />} onClick={handleLogout}>Log out</DropdownItem>
                     </DropdownMenu>

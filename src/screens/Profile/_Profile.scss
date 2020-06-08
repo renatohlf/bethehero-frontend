@@ -67,9 +67,8 @@
     position: absolute;
     right: 1rem;
     top: 1rem;
-    @media (min-width: 768px) {  
-        border: 0;
-    }
+    background-color: transparent;
+    border: 0;
 }
 
 .profile__content ul li button:hover { 
