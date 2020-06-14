@@ -11,7 +11,7 @@ const LostPassword = () => {
 
     const submit = (e) => {
         e.preventDefault();
-        api.post('lost_password', { email }).then(
+        api.post('password/lost', { email }).then(
             (res) => {
                 setLoading(false);
                 toast.success("A link was sent to your email. Check your email", {

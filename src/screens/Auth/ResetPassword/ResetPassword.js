@@ -4,6 +4,7 @@ import api from "../../../services/api";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 import { useHistory } from "react-router-dom";
 import queryString from 'query-string';
+import { routes } from './../../../static/routes';
 
 const ResetPassword = () => {
     const history = useHistory();
@@ -16,13 +17,13 @@ const ResetPassword = () => {
     const submit = (e) => {
         e.preventDefault();
         setLoading(true);
-        api.post('reset_password', { email: params.email, token: params.token, password }).then(
+        api.post('password/reset', { email: params.email, token: params.token, password }).then(
             (res) => {
                 setLoading(false);
-                toast.success("Your password was successfuly updated", {
+                toast.success("Your password was successfully updated", {
                     position: toast.POSITION.BOTTOM_RIGHT
                 }, 2000);
-                history.push('/');
+                history.push(routes.login());
         }).catch((error) => {
             setLoading(false);
             toast.error("Error: " + error.response.data.error, {

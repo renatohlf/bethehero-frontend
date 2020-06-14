@@ -7,17 +7,18 @@ import Profile from './screens/Profile';
 import LostPassword from './screens/Auth/LostPassword/LostPassword';
 import ResetPassword from './screens/Auth/ResetPassword';
 import EditProfile from './screens/EditProfile/EditProfile';
+import { ProtectedRoute } from './components/ProtectedRoute';
 
 const Routes = () => {
     return (<BrowserRouter>
         <Switch>
             <Route exact path="/" component={Login} /> 
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/profile" component={Profile} />
-            <Route exact path="/profile/edit" component={EditProfile} /> 
-            <Route exact path="/incidents/new" component={RegisterIncident} /> 
-            <Route exact path="/lost_password" component={LostPassword} /> 
-            <Route exact path="/reset_password" component={ResetPassword} /> 
+            <Route exact path="/signup/" component={Register} />
+            <ProtectedRoute exact path="/profile/" component={Profile} />
+            <ProtectedRoute exact path="/profile/edit/" component={EditProfile} /> 
+            <ProtectedRoute exact path="/incidents/new/" component={RegisterIncident} /> 
+            <Route exact path="/password/lost/" component={LostPassword} /> 
+            <Route exact path="/password/reset/" component={ResetPassword} /> 
         </Switch>
     </BrowserRouter> );
 }

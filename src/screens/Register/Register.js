@@ -6,7 +6,7 @@ import { Form, Field } from "react-final-form";
 import api from "../../services/api";
 import LoadingSpinner from '../../components/LoadingSpinner';
 import { toast } from 'react-toastify';
-
+import { routes } from './../../static/routes';
 const Register = () => {
 
   const [loading, setLoading] = useState(false);
@@ -14,12 +14,12 @@ const Register = () => {
 
   const handleRegister = (formValues) => {
     setLoading(true);
-    api.post('register', formValues).then((response) => {
+    api.post('signup', formValues).then((response) => {
       setLoading(false);
       toast.success(`Thank you for your registration! Check your email`, {
         position: toast.POSITION.BOTTOM_RIGHT
       }, 2000);
-      history.push('/');
+      history.push(routes.login());
       
     }).catch((err) => {
       setLoading(false);
@@ -41,7 +41,7 @@ const Register = () => {
             Sign up, login in the platform and help other people to find other
             cases of your ONG.
           </p>
-          <Link className={"back-link register__back-link"} to="/">
+          <Link className={"back-link register__back-link"} to={routes.login()}>
             <FiArrowLeft size={16} color={"e02041"} /> I already have an account
           </Link>
         </section>
