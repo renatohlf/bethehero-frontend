@@ -3,10 +3,11 @@ import { FiLogIn, FiLock } from "react-icons/fi";
 import heroesImg from '../../assets/heroes.png';
 import logo from '../../assets/logo.svg';
 import { Link, useHistory } from "react-router-dom";
-import api from "../../services/api";
 import { Form, Field } from "react-final-form";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { toast } from 'react-toastify';
+import { routes } from "../../static/routes";
+import auth from "../../services/auth";
 
 const Login = () => {
 
@@ -14,20 +15,21 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
 
     const login = (values) => {
+        console.log(values);
         setLoading(true);
-        api.post('login', { ...values }).then(
+        auth.login({ ...values }).then(
         (res) => {
+            console.log(res);
             setLoading(false);
             toast.success("Login Success", {
                 position: toast.POSITION.BOTTOM_RIGHT
             }, 2000);
-            localStorage.setItem('ongName', res.data.ong.name);
-            localStorage.setItem('token', res.data.token);
-            history.push(`/profile`);
+            history.push(routes.profile());
         })
         .catch((error) => {
             setLoading(false);
-            toast.error("Ops... " + error.response.data.error, {
+            console.log(error);
+            toast.error(error.message || error.response.data.error, {
                 position: toast.POSITION.BOTTOM_RIGHT
             }, 5000);
         });
@@ -74,11 +76,11 @@ const Login = () => {
 
 
             <div className={'login__links'}>
-                <Link className={"back-link"} to="/register">
+                <Link className={"back-link"} to={routes.signUp()}>
                         <FiLogIn size={16} color={"e02041"} />
                         I don't have an account
                 </Link>
-                <Link className={"back-link"} to={`/lost_password`}>
+                <Link className={"back-link"} to={routes.lostPassword()}>
                         <FiLock size={16} color={"e02041"} />
                         I lost my password
                 </Link>

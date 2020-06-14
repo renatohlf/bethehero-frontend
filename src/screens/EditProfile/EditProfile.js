@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../../assets/logo.svg";
 import { FiArrowLeft } from "react-icons/fi";
 import { Field, Form } from "react-final-form";
@@ -7,12 +7,14 @@ import api from "../../services/api";
 import LoadingSpinner from '../../components/LoadingSpinner';
 import { toast } from 'react-toastify';
 import { useEffect } from "react";
+import { routes } from './../../static/routes';
+import { getAuthToken } from "../../utils/auth";
 
 const EditProfile = () => { 
     const [ loading, setLoading ] = useState(false);
     const [ ong, setOng ] = useState({});
 
-    const token = localStorage.getItem('token');
+    const token = getAuthToken();
 
     useEffect(() => {
         setLoading(true);
@@ -30,7 +32,7 @@ const EditProfile = () => {
     const handleEditProfile = (formValues) => {
         setLoading(true);
         api.patch('profile/edit', formValues, { headers: { Authorization: token }}).then((response) => {
-            toast.success(`Profile successfuly updated`, {
+            toast.success(`Profile successfully updated`, {
                 position: toast.POSITION.BOTTOM_RIGHT
               }, 2000);
 
@@ -55,7 +57,7 @@ const EditProfile = () => {
                 <p className={"edit-profile__section__text"}>
                     Update your profile data.
                 </p>
-                <Link className={"back-link edit-profile__back-link"} to="/profile">
+                <Link className={"back-link edit-profile__back-link"} to={routes.profile()}>
                     <FiArrowLeft size={16} color={"e02041"} />
                     Back to profile
                 </Link>

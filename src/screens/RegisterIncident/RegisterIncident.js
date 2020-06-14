@@ -6,20 +6,22 @@ import { Field, Form } from "react-final-form";
 import api from "../../services/api";
 import LoadingSpinner from '../../components/LoadingSpinner';
 import { toast } from 'react-toastify';
+import { routes } from './../../static/routes';
+import { getAuthToken } from "../../utils/auth";
 
 const RegisterIncident = () => {
     const [loading, setLoading] = useState(false);
     const history = useHistory();
 
-    const token = localStorage.getItem('token');
+    const token = getAuthToken();
 
     const handleRegister = (formValues) => {
         setLoading(true);
         api.post('incidents', formValues, { headers: { Authorization: token }}).then((response) => {
-            toast.success(`Incident successfuly registered!`, {
+            toast.success(`Incident successfully registered!`, {
                 position: toast.POSITION.BOTTOM_RIGHT
               }, 2000);
-            history.push('/profile');
+            history.push(routes.profile());
             setLoading(false);
         }).catch((err) => {
             setLoading(false);
@@ -42,7 +44,7 @@ const RegisterIncident = () => {
                 <p className={"register-incident__section__text"}>
                     Describe the case detailed to find a hero to solve it.
                 </p>
-                <Link className={"back-link register-incident__back-link"} to="/profile">
+                <Link className={"back-link register-incident__back-link"} to={routes.profile()}>
                     <FiArrowLeft size={16} color={"e02041"} />
                     Back to profile
                 </Link>

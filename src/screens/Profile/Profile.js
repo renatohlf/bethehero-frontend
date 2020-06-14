@@ -9,14 +9,16 @@ import NavItem from '../../components/NavBar/NavItem/NavItem';
 import DropdownItem from '../../components/DropdownMenu/DropdownItem/DropdownItem';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import { toast } from 'react-toastify';
+import { routes } from '../../static/routes';
+import { getAuthToken, getOng } from '../../utils/auth';
+import auth from '../../services/auth';
 
 const Profile = () => {
     
     const history = useHistory();
 
-    const [ ong, setOng ] = useState({});
-
-    const token = localStorage.getItem('token');
+    const token = getAuthToken();
+    const ong = getOng();
     
     const [incidents, setIncidents] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -35,19 +37,6 @@ const Profile = () => {
             }, 5000);
         });
     }, [token]);
-
-    useEffect(() => {
-        setLoading(true);
-        api.get('/ong', { headers: { Authorization: token }}).then((res) => {
-            setOng(res.data);
-            setLoading(false);
-        }).catch((err) => {
-            setLoading(false);
-            toast.error("Error: " + err.response.data.error, {
-                position: toast.POSITION.BOTTOM_RIGHT
-            }, 3000);
-        })
-    }, [token]);
     
 
     useEffect(() => {
@@ -58,7 +47,7 @@ const Profile = () => {
     const handleDeleteIncident = (id) => {
         api.delete(`incidents/${id}`, { headers: { Authorization: token}}).then((res) => {
             loadIncidents();
-            toast.success("Successfuly removed", {
+            toast.success("Successfully removed", {
                 position: toast.POSITION.BOTTOM_RIGHT
             }, 2000);
         }).catch((err) => {
@@ -69,8 +58,8 @@ const Profile = () => {
     };
 
     const handleLogout = () => {
-        localStorage.removeItem('token');
-        history.push('/');
+        auth.logout();
+        history.push(routes.login());
     };
 
     return <div className="profile__container">
@@ -83,8 +72,8 @@ const Profile = () => {
                 {/* <NavItem to={'/incidents/new'} icon={<FiUser size={18} color={"#e02041"} />}></NavItem>  */}
                 <NavItem icon={<FiMenu size={25} color={'#e02041'} />} isDropdownMenu={true}>
                     <DropdownMenu>
-                        <DropdownItem leftIcon={<FiPenTool size={18} color={"#FFF"} />} to={'/profile/edit'}>Edit profile</DropdownItem>
-                        <DropdownItem leftIcon={<FiPlus size={18} color={"#FFF"} />} to={'/incidents/new'}>New case</DropdownItem>
+                        <DropdownItem leftIcon={<FiPenTool size={18} color={"#FFF"} />} to={routes.editProfile()}>Edit profile</DropdownItem>
+                        <DropdownItem leftIcon={<FiPlus size={18} color={"#FFF"} />} to={routes.newIncident()}>New case</DropdownItem>
                         <DropdownItem leftIcon={<FiPower size={18} color={"#FFF"} />} onClick={handleLogout}>Log out</DropdownItem>
                     </DropdownMenu>
                 </NavItem>
@@ -93,7 +82,7 @@ const Profile = () => {
 
         <div className="profile__content">
             <div className="title">Registered cases</div>        
-            { incidents.length === 0 && <div className="profile__empty text-muted"> You didn't register any new case yet. Click <Link to={'/incidents/new'}>here</Link>  to register </div>}
+            { incidents.length === 0 && <div className="profile__empty text-muted"> You didn't register any new case yet. Click <Link to={routes.newIncident()}>here</Link>  to register </div>}
             <ul>    
                 { incidents && incidents.map(incident => 
 
