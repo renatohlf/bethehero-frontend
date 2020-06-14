@@ -7,6 +7,7 @@ import Profile from './screens/Profile';
 import LostPassword from './screens/Auth/LostPassword/LostPassword';
 import ResetPassword from './screens/Auth/ResetPassword';
 import EditProfile from './screens/EditProfile/EditProfile';
+import ErrorPage from './screens/ErrorPage/ErrorPage';
 import { ProtectedRoute } from './components/ProtectedRoute';
 
 const Routes = () => {
@@ -19,6 +20,8 @@ const Routes = () => {
             <ProtectedRoute exact path="/incidents/new/" component={RegisterIncident} /> 
             <Route exact path="/password/lost/" component={LostPassword} /> 
             <Route exact path="/password/reset/" component={ResetPassword} /> 
+
+            <Route path={'*'} render={() => <ErrorPage error={"Page Not Found"} />} />
         </Switch>
     </BrowserRouter> );
 }
